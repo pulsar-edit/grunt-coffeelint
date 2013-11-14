@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     }
 
     if (!warnCount) {
-      grunt.verbose.ok(files.length + ' file' + (files.length === 1 ? '' : 's') +
+      grunt.log.ok(files.length + ' file' + (files.length === 1 ? '' : 's') +
           ' lint free.');
     }
   });
