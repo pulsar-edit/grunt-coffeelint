@@ -22,20 +22,19 @@ module.exports = function(grunt) {
       errors.forEach(function(error) {
         var status, message;
 
-        if (error.level === 'error') {
-          errorCount += 1;
-          status = "[error]".red;
-        } else if (error.level === 'warn') {
-          warnCount += 1;
-          status = "[warn]".yellow;
-        } else {
-          return;
-        }
-
         message = file + ':' + error.lineNumber + ' ' + error.message +
             ' (' + error.rule + ')';
 
-        grunt.log.writeln(status + ' ' + message);
+        if (error.level === 'error') {
+          errorCount += 1;
+          grunt.log.error(message);
+        } else if (error.level === 'warn') {
+          warnCount += 1;
+          grunt.log.ok(message);
+        } else {
+          return;
+        }
+        
         grunt.event.emit('coffeelint:' + error.level, error.level, message);
         grunt.event.emit('coffeelint:any', error.level, message);
       });
@@ -46,7 +45,7 @@ module.exports = function(grunt) {
     }
 
     if (!warnCount) {
-      grunt.log.ok(files.length + ' file' + (files.length === 1 ? '' : 's') +
+      grunt.verbose.ok(files.length + ' file' + (files.length === 1 ? '' : 's') +
           ' lint free.');
     }
   });
