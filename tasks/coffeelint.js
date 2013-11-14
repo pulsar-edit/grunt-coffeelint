@@ -27,10 +27,10 @@ module.exports = function(grunt) {
 
         if (error.level === 'error') {
           errorCount += 1;
-          grunt.log.error(message);
+          grunt.log.error("[error]".red + message);
         } else if (error.level === 'warn') {
           warnCount += 1;
-          grunt.log.ok(message);
+          grunt.log.ok("[warn]".yellow + message);
         } else {
           return;
         }
