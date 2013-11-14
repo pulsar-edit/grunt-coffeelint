@@ -22,20 +22,19 @@ module.exports = function(grunt) {
       errors.forEach(function(error) {
         var status, message;
 
+        message = file + ':' + error.lineNumber + ' ' + error.message +
+            ' (' + error.rule + ')';
+
         if (error.level === 'error') {
           errorCount += 1;
-          status = "[error]".red;
+          grunt.log.error("[error]".red + message);
         } else if (error.level === 'warn') {
           warnCount += 1;
-          status = "[warn]".yellow;
+          grunt.log.ok("[warn]".yellow + message);
         } else {
           return;
         }
 
-        message = file + ':' + error.lineNumber + ' ' + error.message +
-            ' (' + error.rule + ')';
-
-        grunt.log.writeln(status + ' ' + message);
         grunt.event.emit('coffeelint:' + error.level, error.level, message);
         grunt.event.emit('coffeelint:any', error.level, message);
       });
