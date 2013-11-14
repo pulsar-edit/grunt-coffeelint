@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         } else {
           return;
         }
-        
+
         grunt.event.emit('coffeelint:' + error.level, error.level, message);
         grunt.event.emit('coffeelint:any', error.level, message);
       });
