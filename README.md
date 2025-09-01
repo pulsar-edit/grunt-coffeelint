@@ -1,3 +1,5 @@
+# This Repo is archived under Pulsar-Edit since it is not used.
+
 [![build status](https://secure.travis-ci.org/vojtajina/grunt-coffeelint.svg)](http://travis-ci.org/vojtajina/grunt-coffeelint)
 # grunt-coffeelint
 
